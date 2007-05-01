@@ -2,9 +2,10 @@
 %define		srcname		verve-plugin
 #
 Summary:	Verve plugin for Xfce panel
+Summary(pl):	Wtyczka Verve dla panelu Xfce
 Name:		xfce4-%{srcname}
 Version:	0.3.5
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://goodies.xfce.org/releases/verve-plugin/%{srcname}-%{version}.tar.bz2
@@ -31,6 +32,15 @@ It supports several nice features, such as:
 - open URLs and e-mail addresses in your favourite applications
 - focus grabbing via D-BUS
 - custom input field width
+
+%description -l pl
+Wtyczka Verve to wtyczka wygodnej linii poleceñ dla panelu Xfce.
+Obs³uguje kilka przyjemnych elementów, takich jak:
+- historiê poleceñ
+- automatyczne dope³nianie (wraz z histori± poleceñ)
+- otwieranie URL-i i adresów e-mail w ulubionych aplikacjach
+- przechwytywanie ogniska poprzez D-BUS
+- ustawialn± szeroko¶æ pola wprowadzania
 
 %prep
 %setup -q -n %{srcname}-%{version}

@@ -1,0 +1,98 @@
+diff -ur xfce4-verve-plugin-1.0.0-orig/configure.ac xfce4-verve-plugin-1.0.0/configure.ac
+--- xfce4-verve-plugin-1.0.0-orig/configure.ac	2010-12-23 16:56:19.000000000 +0100
++++ xfce4-verve-plugin-1.0.0/configure.ac	2011-03-01 13:45:54.039063513 +0100
+@@ -60,7 +60,7 @@
+   [XDT_CHECK_PACKAGE([LIBEXO], [exo-1], [0.5.0])])
+ XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.4.0])
+ XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.4.0])
+-XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.4.0])
++XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.8.0])
+ XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.6.4])
+ XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.6.4])
+ XDT_CHECK_PACKAGE([LIBPCRE], [libpcre], [5.0])
+diff -ur xfce4-verve-plugin-1.0.0-orig/panel-plugin/Makefile.am xfce4-verve-plugin-1.0.0/panel-plugin/Makefile.am
+--- xfce4-verve-plugin-1.0.0-orig/panel-plugin/Makefile.am	2010-12-20 17:13:00.000000000 +0100
++++ xfce4-verve-plugin-1.0.0/panel-plugin/Makefile.am	2011-03-01 13:45:54.039063513 +0100
+@@ -19,7 +19,7 @@
+ 	@LIBEXO_CFLAGS@							\
+ 	@LIBXFCE4PANEL_CFLAGS@						\
+ 	@LIBXFCE4UTIL_CFLAGS@						\
+-	@LIBXFCEGUI4_CFLAGS@						\
++	@LIBXFCE4UI_CFLAGS@						\
+ 	@LIBPCRE_CFLAGS@						\
+ 	@GLIB_CFLAGS@							\
+ 	@GTHREAD_CFLAGS@						
+@@ -28,7 +28,7 @@
+ 	@LIBEXO_LIBS@							\
+ 	@LIBXFCE4PANEL_LIBS@						\
+ 	@LIBXFCE4UTIL_LIBS@						\
+-	@LIBXFCEGUI4_LIBS@						\
++	@LIBXFCE4UI_LIBS@						\
+ 	@LIBPCRE_LIBS@							\
+ 	@GLIB_LIBS@							\
+ 	@GTHREAD_LIBS@
+diff -ur xfce4-verve-plugin-1.0.0-orig/panel-plugin/verve.c xfce4-verve-plugin-1.0.0/panel-plugin/verve.c
+--- xfce4-verve-plugin-1.0.0-orig/panel-plugin/verve.c	2010-12-20 17:13:00.000000000 +0100
++++ xfce4-verve-plugin-1.0.0/panel-plugin/verve.c	2011-03-01 13:45:54.043063514 +0100
+@@ -25,7 +25,7 @@
+ 
+ #include <glib-object.h>
+ 
+-#include <libxfcegui4/libxfcegui4.h>
++#include <libxfce4ui/libxfce4ui.h>
+ 
+ #include "verve.h"
+ #include "verve-env.h"
+diff -ur xfce4-verve-plugin-1.0.0-orig/panel-plugin/verve-dbus-service.c xfce4-verve-plugin-1.0.0/panel-plugin/verve-dbus-service.c
+--- xfce4-verve-plugin-1.0.0-orig/panel-plugin/verve-dbus-service.c	2010-12-20 17:13:00.000000000 +0100
++++ xfce4-verve-plugin-1.0.0/panel-plugin/verve-dbus-service.c	2011-03-01 13:45:54.043063514 +0100
+@@ -34,7 +34,7 @@
+ #include <dbus/dbus-glib-lowlevel.h>
+ #include <dbus/dbus.h>
+ 
+-#include <libxfce4panel/xfce-panel-plugin.h>
++#include <libxfce4panel/libxfce4panel.h>
+ 
+ #include "verve-dbus-service.h"
+ 
+diff -ur xfce4-verve-plugin-1.0.0-orig/panel-plugin/verve-plugin.c xfce4-verve-plugin-1.0.0/panel-plugin/verve-plugin.c
+--- xfce4-verve-plugin-1.0.0-orig/panel-plugin/verve-plugin.c	2010-12-20 17:13:00.000000000 +0100
++++ xfce4-verve-plugin-1.0.0/panel-plugin/verve-plugin.c	2011-03-01 13:47:44.616063515 +0100
+@@ -33,8 +33,8 @@
+ #include <gtk/gtk.h>
+ 
+ #include <libxfce4util/libxfce4util.h>
+-#include <libxfce4panel/xfce-panel-plugin.h>
+-#include <libxfcegui4/libxfcegui4.h>
++#include <libxfce4panel/libxfce4panel.h>
++#include <libxfce4ui/libxfce4ui.h>
+ 
+ #include "verve.h"
+ #include "verve-env.h"
+@@ -411,7 +411,7 @@
+             gchar *msg = g_strconcat (_("Could not execute command:"), " ", command, NULL);
+ 
+             /* Display error message dialog */
+-            xfce_err (msg);
++            xfce_dialog_show_error (NULL, NULL, msg);
+ 
+             /* Free message */
+             g_free (msg);
+@@ -804,7 +804,7 @@
+   gtk_container_set_border_width (GTK_CONTAINER (dialog), 2);
+ 
+   /* Frame for appearance settings */
+-  frame = xfce_create_framebox (_("Appearance"), &bin1);
++  frame = xfce_gtk_frame_box_new (_("Appearance"), &bin1);
+   gtk_container_set_border_width (GTK_CONTAINER (frame), 6);
+   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), frame, TRUE, TRUE, 0);
+   gtk_widget_show (frame);
+@@ -835,7 +835,7 @@
+   g_signal_connect (size_spin, "value-changed", G_CALLBACK (verve_plugin_size_changed), verve);
+ 
+   /* Frame for behaviour settings */
+-  frame = xfce_create_framebox (_("Behaviour"), &bin2);
++  frame = xfce_gtk_frame_box_new (_("Behaviour"), &bin2);
+   gtk_container_set_border_width (GTK_CONTAINER (frame), 6);
+   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), frame, TRUE, TRUE, 0);
+   gtk_widget_show (frame);

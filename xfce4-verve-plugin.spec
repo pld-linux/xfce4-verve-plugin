@@ -2,7 +2,7 @@ Summary:	Verve plugin for Xfce panel
 Summary(pl.UTF-8):	Wtyczka Verve dla panelu Xfce
 Name:		xfce4-verve-plugin
 Version:	1.0.0
-Release:	3
+Release:	4
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-verve-plugin/1.0/%{name}-%{version}.tar.bz2

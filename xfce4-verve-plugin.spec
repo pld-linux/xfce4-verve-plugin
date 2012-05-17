@@ -53,9 +53,15 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-ls -l po/
+%{__intltoolize}
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--disable-static
+
 %{__make}
 
 %install

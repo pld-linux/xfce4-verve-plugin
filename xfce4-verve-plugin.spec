@@ -47,7 +47,8 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 %patch0 -p1
 
 %build
-%{__intltoolize} --automake
+%{__glib_gettextize}
+%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}

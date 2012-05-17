@@ -47,13 +47,13 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 %patch0 -p1
 
 %build
+export AUTOPOINT="intltoolize --automake --copy"
 %{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-touch po/stamp-it
 %configure \
 	--disable-static
 

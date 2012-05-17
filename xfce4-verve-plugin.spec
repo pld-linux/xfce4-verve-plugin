@@ -48,13 +48,7 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 
 %build
 %{__intltoolize}
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%{__intltoolize}
-%{__libtoolize}
+#{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}

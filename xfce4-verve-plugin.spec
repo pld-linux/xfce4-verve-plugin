@@ -48,10 +48,10 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 
 %build
 #{__intltoolize}
-%{__libtoolize}
-%{__aclocal}
+#{__libtoolize}
+#{__aclocal}
 %{__autoconf}
-%{__autoheader}
+#{__autoheader}
 %{__automake}
 %configure \
 	--disable-static

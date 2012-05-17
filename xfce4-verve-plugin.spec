@@ -47,7 +47,7 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 %patch0 -p1
 
 %build
-%{__glib_gettextize}
+rm -f po/Makefile.in.in
 %{__intltoolize}
 %{__libtoolize}
 %{__aclocal}

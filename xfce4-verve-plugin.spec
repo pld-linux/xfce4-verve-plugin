@@ -44,7 +44,7 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 
 %build
 #{__intltoolize}
@@ -53,7 +53,6 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 #{__autoconf}
 #{__autoheader}
 #{__automake}
-AUTOPOINT='intltoolize --automake --copy' autoreconf --force --install --verbose
 %configure \
 	--disable-static
 

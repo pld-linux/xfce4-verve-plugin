@@ -47,11 +47,11 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 %patch0 -p1
 
 %build
-#{__intltoolize}
-#{__libtoolize}
+%{__intltoolize} --automake
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
-#{__autoheader}
+%{__autoheader}
 %{__automake}
 %configure \
 	--disable-static

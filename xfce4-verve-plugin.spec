@@ -1,3 +1,9 @@
+#
+# TODO:
+#	- fix after autoconf:
+#	grep: po/Makefile.in: No such file or directory
+#	config.status: error: po/Makefile.in.in was not created by intltoolize.
+#
 Summary:	Verve plugin for Xfce panel
 Summary(pl.UTF-8):	Wtyczka Verve dla panelu Xfce
 Name:		xfce4-verve-plugin

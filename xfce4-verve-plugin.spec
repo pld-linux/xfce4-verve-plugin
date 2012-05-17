@@ -44,15 +44,15 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 
 %build
-%{__intltoolize}
-%{__libtoolize}
-%{__aclocal}
-%{__autoheader}
-%{__automake}
-%{__autoconf}
+#{__intltoolize}
+#{__libtoolize}
+#{__aclocal}
+#{__autoheader}
+#{__automake}
+#{__autoconf}
 %configure
 
 %{__make}

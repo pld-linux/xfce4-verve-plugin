@@ -1,27 +1,26 @@
 Summary:	Verve plugin for Xfce panel
 Summary(pl.UTF-8):	Wtyczka Verve dla panelu Xfce
 Name:		xfce4-verve-plugin
-Version:	1.0.0
-Release:	5
+Version:	1.0.1
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-verve-plugin/1.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	ed7039c40d6e560ed8bcf9a324d2ae86
-Patch0:		%{name}-ui.patch
-Patch1:		ac-fix.patch
+# Source0-md5:	b5dbe88b2bea2c35785961d68fe446e4
+Patch0:		format-security.patch
 URL:		http://goodies.xfce.org/projects/panel-plugins/verve-plugin
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	dbus-glib-devel >= 0.34
-BuildRequires:	exo-devel >= 0.5.0
+BuildRequires:	exo-devel >= 0.10.4
 BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	libxfce4ui-devel
 BuildRequires:	pcre-devel
 BuildRequires:	pkgconfig
-BuildRequires:	xfce4-dev-tools >= 4.4.0
-BuildRequires:	xfce4-panel-devel >= 4.4.0
-Requires:	xfce4-panel >= 4.4.0
+BuildRequires:	xfce4-dev-tools >= 4.12.0
+BuildRequires:	xfce4-panel-devel >= 4.12.0
+Requires:	xfce4-panel >= 4.12.0
 Obsoletes:	xfce4-minicmd-plugin
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,7 +45,6 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__intltoolize}
@@ -76,5 +74,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README THANKS
 %attr(755,root,root) %{_bindir}/verve-focus
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/xfce4-verve-plugin
-%{_datadir}/xfce4/panel-plugins/xfce4-verve-plugin.desktop
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libverve.so
+%{_datadir}/xfce4/panel/plugins/xfce4-verve-plugin.desktop

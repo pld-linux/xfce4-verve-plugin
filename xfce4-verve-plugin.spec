@@ -1,25 +1,27 @@
 Summary:	Verve plugin for Xfce panel
 Summary(pl.UTF-8):	Wtyczka Verve dla panelu Xfce
 Name:		xfce4-verve-plugin
-Version:	2.0.3
+Version:	2.0.4
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-verve-plugin/2.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	7dac12f16b09031c985fe71e4e599377
-URL:		http://goodies.xfce.org/projects/panel-plugins/verve-plugin
+Source0:	https://archive.xfce.org/src/panel-plugins/xfce4-verve-plugin/2.0/%{name}-%{version}.tar.bz2
+# Source0-md5:	c2f6ea879382faebea44af9f004bc5e3
+URL:		https://goodies.xfce.org/projects/panel-plugins/verve-plugin
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	dbus-glib-devel >= 0.34
 BuildRequires:	exo-devel >= 0.10.4
-BuildRequires:	intltool
+BuildRequires:	glib2-devel >= 2.50.0
+BuildRequires:	gtk+3-devel >= 3.22.0
 BuildRequires:	libtool
-BuildRequires:	libxfce4ui-devel
-BuildRequires:	pcre-devel
+BuildRequires:	libxfce4ui-devel >= 4.16.0
+BuildRequires:	libxfce4util-devel >= 4.16.0
+BuildRequires:	pcre2-8-devel >= 10.00
 BuildRequires:	pkgconfig
-BuildRequires:	xfce4-dev-tools >= 4.14.0
-BuildRequires:	xfce4-panel-devel >= 4.14.0
-Requires:	xfce4-panel >= 4.14.0
+BuildRequires:	xfce4-dev-tools >= 4.16.0
+BuildRequires:	xfce4-panel-devel >= 4.16.0
+Requires:	xfce4-panel >= 4.16.0
 Obsoletes:	xfce4-minicmd-plugin
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,7 +47,6 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 %setup -q
 
 %build
-%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
@@ -61,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{hy_AM,hye,ie,ur_PK}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{hy_AM,hye,ie,ur_PK}
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel/plugins/libverve.la
 

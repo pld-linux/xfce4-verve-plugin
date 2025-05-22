@@ -1,15 +1,15 @@
 Summary:	Verve plugin for Xfce panel
 Summary(pl.UTF-8):	Wtyczka Verve dla panelu Xfce
 Name:		xfce4-verve-plugin
-Version:	2.0.4
+Version:	2.1.0
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	https://archive.xfce.org/src/panel-plugins/xfce4-verve-plugin/2.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	c2f6ea879382faebea44af9f004bc5e3
+Source0:	https://archive.xfce.org/src/panel-plugins/xfce4-verve-plugin/2.1/%{name}-%{version}.tar.xz
+# Source0-md5:	06527afc8e81d0354761f48ca1aab074
 URL:		https://goodies.xfce.org/projects/panel-plugins/verve-plugin
-BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake
+BuildRequires:	meson >= 0.54.0
+BuildRequires:	ninja
 BuildRequires:	dbus-glib-devel >= 0.34
 BuildRequires:	exo-devel >= 0.10.4
 BuildRequires:	glib2-devel >= 2.50.0
@@ -47,24 +47,15 @@ Obsługuje kilka przyjemnych elementów, takich jak:
 %setup -q
 
 %build
-%{__libtoolize}
-%{__aclocal}
-%{__autoheader}
-%{__automake}
-%{__autoconf}
-%configure
-
-%{__make}
+%meson
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%meson_install
 
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{hy_AM,hye,ie,ur_PK}
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel/plugins/libverve.la
 
 %find_lang %{name}
 
@@ -73,6 +64,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog THANKS
+%doc AUTHORS NEWS THANKS README.md
 %attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libverve.so
 %{_datadir}/xfce4/panel/plugins/xfce4-verve-plugin.desktop
